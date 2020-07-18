@@ -1,3 +1,6 @@
+#######################
+# general configruation
+#######################
 cmake_minimum_required(VERSION 2.8.3)
 project(plain_cmake)
 set(CMAKE_CXX_STANDARD 11)
@@ -10,8 +13,14 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# System dependencies
+##############
+# dependencies
+##############
 find_package (Eigen3 3.3 REQUIRED NO_MODULE)
+
+###################
+# target defintions
+###################
 
 # Declare a C++ library
 add_library(plain_cmake_lib src/matrix_operations.cpp)
@@ -26,6 +35,10 @@ target_link_libraries(plain_cmake_lib PUBLIC Eigen3::Eigen)
 add_executable(example src/example.cpp)
 target_link_libraries(example plain_cmake_lib)
 
+##############
+# Installation
+##############
+
 # install targets: libraries and binaries
 install(TARGETS plain_cmake_lib example
   EXPORT plain_cmakeTargets
@@ -39,25 +52,16 @@ install(DIRECTORY include DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
   FILES_MATCHING PATTERN "*.h"
 )
 
-# Generate CMake package
-# https://cmake.org/cmake/help/v3.18/module/CMakePackageConfigHelpers.html
-include(CMakePackageConfigHelpers)
-write_basic_package_version_file(
-  ${CMAKE_CURRENT_BINARY_DIR}/plain_cmakeConfigVersion.cmake
-  VERSION ${PLAIN_CMAKE_VERSION}
-  COMPATIBILITY SameMajorVersion)
+################
+# export targets
+################
 
+# build tree
 export(EXPORT plain_cmakeTargets
   FILE ${CMAKE_CURRENT_BINARY_DIR}/plain_cmakeTargets.cmake
   NAMESPACE plain_cmake::)
 
-set(ConfigPackageLocation ${CMAKE_INSTALL_DATAROOTDIR}/plain_cmake/cmake)
-configure_package_config_file(
-  plain_cmakeConfig.cmake.in
-  ${CMAKE_CURRENT_BINARY_DIR}/plain_cmakeConfig.cmake
-  INSTALL_DESTINATION ${ConfigPackageLocation}
-  PATH_VARS plain_cmake_INCLUDE_DIRS)
-
+# installation
 install(EXPORT plain_cmakeTargets
   FILE
     plain_cmakeTargets.cmake
@@ -72,4 +76,20 @@ install(
   DESTINATION
     ${ConfigPackageLocation})
 
+###############
+# CMake package
+###############
 
+# https://cmake.org/cmake/help/latest/module/CMakePackageConfigHelpers.html
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+  ${CMAKE_CURRENT_BINARY_DIR}/plain_cmakeConfigVersion.cmake
+  VERSION ${PLAIN_CMAKE_VERSION}
+  COMPATIBILITY SameMajorVersion)
+
+set(ConfigPackageLocation ${CMAKE_INSTALL_DATAROOTDIR}/plain_cmake/cmake)
+configure_package_config_file(
+  plain_cmakeConfig.cmake.in
+  ${CMAKE_CURRENT_BINARY_DIR}/plain_cmakeConfig.cmake
+  INSTALL_DESTINATION ${ConfigPackageLocation}
+  PATH_VARS plain_cmake_INCLUDE_DIRS)

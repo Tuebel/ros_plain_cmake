@@ -1,6 +1,7 @@
+# required by CMakePackageConfigHelpers
+# https://cmake.org/cmake/help/latest/module/CMakePackageConfigHelpers.html
 @PACKAGE_INIT@
 
-# https://cmake.org/cmake/help/v3.18/module/CMakePackageConfigHelpers.html
 include(CMakeFindDependencyMacro)
 
 # set includes and targets
