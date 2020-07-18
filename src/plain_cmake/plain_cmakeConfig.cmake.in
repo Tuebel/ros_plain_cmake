@@ -1,0 +1,14 @@
+# required by CMakePackageConfigHelpers
+# https://cmake.org/cmake/help/latest/module/CMakePackageConfigHelpers.html
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+# forward the targets
+include (${CMAKE_CURRENT_LIST_DIR}/plain_cmakeTargets.cmake)
+
+# forward dependencies
+find_dependency(Eigen3 3.3 REQUIRED)
+
+# labels the packages as found or not
+check_required_components(plain_cmake)
