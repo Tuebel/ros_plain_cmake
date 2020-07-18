@@ -1,3 +1,9 @@
+
+###########################################################################
+# Minimal example of a CMake package that consumes the plain_cmake package.
+# The plain_cmake package must have been built and checkinstalled.
+###########################################################################
+
 #######################
 # general configruation
 #######################
