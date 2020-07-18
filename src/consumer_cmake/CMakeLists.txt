@@ -28,4 +28,4 @@ find_package(plain_cmake)
 ###################
 
 add_executable(app src/app.cpp)
-target_link_libraries(app plain_cmake_lib)
+target_link_libraries(app plain_cmake::plain_cmake_lib)

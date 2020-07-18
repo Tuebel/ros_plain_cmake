@@ -34,4 +34,4 @@ target_include_directories(test_node
   PRIVATE ${catkin_INCLUDE_DIRS})
 # link with the plain_cmake_lib
 target_link_libraries(test_node
-  PRIVATE ${catkin_LIBRARIES} plain_cmake_lib)
+  PRIVATE ${catkin_LIBRARIES} plain_cmake::plain_cmake_lib)

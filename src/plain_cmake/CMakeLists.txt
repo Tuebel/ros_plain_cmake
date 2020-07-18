@@ -52,7 +52,7 @@ install(TARGETS plain_cmake_lib example_app
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
-# header files, not the "/" after include
+# header files, note the "/" after include
 install(DIRECTORY include/
   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
   FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp")
