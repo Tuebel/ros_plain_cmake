@@ -1,6 +1,6 @@
 # About
 An example plain CMake project for ROS. Includes:
-* Use a system dependency in the plain_cmake package (Eigen3)
+* forwarding a system dependency in the plain_cmake package (Eigen3)
 * find_package the_cmake package in build tree / workspace or system installation
 * support for catkin_package
 
