@@ -1,16 +1,19 @@
 {
     "configurations": [
         {
-            "name": "Linux",
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
             "includePath": [
-                "${workspaceFolder}/**"
+                "/opt/ros/noetic/include/**",
+                "/usr/include/**"
             ],
-            "defines": [],
+            "name": "ROS",
+            "intelliSenseMode": "gcc-x64",
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "c11",
-            "cppStandard": "c++17",
-            "intelliSenseMode": "clang-x64",
-            "compileCommands": "${workspaceFolder}/src/my_plain_cmake/build/compile_commands.json"
+            "cppStandard": "gnu++14"
         }
     ],
     "version": 4
