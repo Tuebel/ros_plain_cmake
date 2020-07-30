@@ -1,17 +1,4 @@
 #######################
-# general configruation
-#######################
-cmake_minimum_required(VERSION 3.0)
-project(plain_cmake)
-set(PLAIN_CMAKE_VERSION 0.1)
-set(CMAKE_CXX_STANDARD 11)
-
-# Output more warnings
-if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-  add_compile_options(-Wall -Wextra -Wpedantic)
-endif()
-
-#######################
 # include CMake helpers
 #######################
 
@@ -19,6 +6,21 @@ endif()
 include(GNUInstallDirs)
 # helpers to generate <package>Config.cmake
 include(CMakePackageConfigHelpers)
+
+#######################
+# general configuration
+#######################
+cmake_minimum_required(VERSION 3.1)
+project(plain_cmake)
+set(PLAIN_CMAKE_VERSION 0.1)
+set(CMAKE_CXX_STANDARD 11)
+# install location of generated cmake config files
+set(ConfigPackageLocation ${CMAKE_INSTALL_LIBDIR}/${CMAKE_PROJECT_NAME}/cmake)
+
+# Output more warnings
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
 
 ##############
 # dependencies
@@ -30,7 +32,10 @@ find_package (Eigen3 3.3 REQUIRED NO_MODULE)
 ###################
 
 # declare library
-add_library(${CMAKE_PROJECT_NAME}_lib src/matrix_operations.cpp)
+add_library(${CMAKE_PROJECT_NAME}_lib)
+# target sources is IDE friendly (especially for INTERFACE libs)
+target_sources(${CMAKE_PROJECT_NAME}_lib PRIVATE
+  src/matrix_operations.cpp)
 # different locations on build and after install
 target_include_directories(${CMAKE_PROJECT_NAME}_lib PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -44,9 +49,6 @@ target_link_libraries(example_app ${CMAKE_PROJECT_NAME}_lib)
 #################
 # install targets
 #################
-
-# install location of generated cmake config files
-set(ConfigPackageLocation ${CMAKE_INSTALL_LIBDIR}/${CMAKE_PROJECT_NAME}/cmake)
 
 # libs and binaries, generate export targets
 install(TARGETS ${CMAKE_PROJECT_NAME}_lib example_app
@@ -67,8 +69,7 @@ install(DIRECTORY include/
 export(EXPORT ${CMAKE_PROJECT_NAME}Targets
   FILE ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_PROJECT_NAME}Targets.cmake
   NAMESPACE ${CMAKE_PROJECT_NAME}::)
-
-# for installation
+# exported targets
 install(EXPORT ${CMAKE_PROJECT_NAME}Targets
   FILE ${CMAKE_PROJECT_NAME}Targets.cmake
   NAMESPACE ${CMAKE_PROJECT_NAME}::
