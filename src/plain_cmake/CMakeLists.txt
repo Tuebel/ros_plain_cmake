@@ -42,7 +42,7 @@ target_include_directories(${CMAKE_PROJECT_NAME}_lib PUBLIC
   $<INSTALL_INTERFACE:include>)
 target_link_libraries(${CMAKE_PROJECT_NAME}_lib PUBLIC Eigen3::Eigen)
 
-# declare an executable
+# declare executable
 add_executable(example_app src/example_app.cpp)
 target_link_libraries(example_app ${CMAKE_PROJECT_NAME}_lib)
 
@@ -58,8 +58,7 @@ install(TARGETS ${CMAKE_PROJECT_NAME}_lib example_app
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 # header files, note the "/" after include
 install(DIRECTORY include/
-  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-  FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp")
+  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
 ################
 # export targets
@@ -86,12 +85,12 @@ write_basic_package_version_file(
   COMPATIBILITY SameMajorVersion)
 
 # generate package configuration file
-set(${CMAKE_PROJECT_NAME}_INCLUDE_DIRS include)
+set(INCLUDE_INSTALL_DIR ${CMAKE_INSTALL_INCLUDEDIR})
 configure_package_config_file(
   ${CMAKE_PROJECT_NAME}Config.cmake.in
   ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_PROJECT_NAME}Config.cmake
   INSTALL_DESTINATION ${ConfigPackageLocation}
-  PATH_VARS ${CMAKE_PROJECT_NAME}_INCLUDE_DIRS)
+  PATH_VARS INCLUDE_INSTALL_DIR)
 
 # install the package configuration files
 install(FILES 

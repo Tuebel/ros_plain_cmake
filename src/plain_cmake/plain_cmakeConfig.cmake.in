@@ -2,16 +2,19 @@
 # https://cmake.org/cmake/help/latest/module/CMakePackageConfigHelpers.html
 @PACKAGE_INIT@
 
-include(CMakeFindDependencyMacro)
-
 # forward the targets
-include (${CMAKE_CURRENT_LIST_DIR}/plain_cmakeTargets.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/plain_cmakeTargets.cmake)
 
-# define INCLUDE_DIRS, required for catkin_package
-set_and_check(plain_cmake_INCLUDE_DIRS "@PACKAGE_plain_cmake_INCLUDE_DIRS@")
+# define INCLUDE_DIRS and LIBRARIES, required for catkin_package
+set_and_check(plain_cmake_INCLUDE_DIRS "@PACKAGE_INCLUDE_INSTALL_DIR@")
+set(plain_cmake_LIBRARIES plain_cmake::plain_cmake_lib)
 
+
+# !!! after expanding the @PACKAGE_<...>@ macros!!!
+# otherwise the paths are wrong
 # forward dependencies
-find_dependency(Eigen3 3.3 REQUIRED)
+include(CMakeFindDependencyMacro)
+find_dependency(Eigen3 3.3 REQUIRED NO_MODULE)
 
 # labels the packages as found or not
 check_required_components(plain_cmake)

@@ -20,8 +20,7 @@ find_package(plain_cmake REQUIRED)
 # call catkin_package
 catkin_package(
  CATKIN_DEPENDS roscpp std_msgs
- DEPENDS plain_cmake
-)
+ DEPENDS plain_cmake)
 
 ###########
 ## Build ##
