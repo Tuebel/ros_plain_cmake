@@ -4,4 +4,4 @@ An example plain CMake project for ROS. Includes:
 * find_package the_cmake package in build tree / workspace or system installation
 * support for catkin_package
 
-More info will follow in a blog post [here](https://tuebel.github.io/blog/2020/06/27/ros-plain-cmake.html).
+More information can be found in this [blog post](https://tuebel.github.io/blog/ros/cmake/2020/06/27/ros-plain-cmake.html).
