@@ -6,7 +6,7 @@
 
   <maintainer email="tim.uebelhoer@rwth-aachen.de">Tim Übelhör</maintainer>
   <license>MIT</license>
-  <url type="website">https://github.com/Tuebel/ros_plain_cmake</url>
+  <url type="repository">https://github.com/Tuebel/ros_plain_cmake</url>
   <author email="tim.uebelhoer@rwth-aachen.de">Tim Übelhör</author>
 
   <depend>eigen</depend>
