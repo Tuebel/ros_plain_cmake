@@ -10,6 +10,7 @@ include(CMakePackageConfigHelpers)
 #######################
 # general configuration
 #######################
+
 cmake_minimum_required(VERSION 3.1)
 project(plain_cmake)
 set(PLAIN_CMAKE_VERSION 0.1)
@@ -25,6 +26,7 @@ endif()
 ##############
 # dependencies
 ##############
+
 find_package (Eigen3 3.3 REQUIRED NO_MODULE)
 
 ###################
