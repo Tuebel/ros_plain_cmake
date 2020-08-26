@@ -14,8 +14,6 @@ add_compile_options(-std=c++11)
 # is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS catkin_pkg roscpp std_msgs)
 
-message("catkin libs: ${catkin_LIBRARIES}")
-
 # call catkin_package
 catkin_package(
  CATKIN_DEPENDS catkin_pkg roscpp std_msgs)
