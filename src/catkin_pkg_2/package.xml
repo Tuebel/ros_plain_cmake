@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>catkin_pkg_2</name>
+  <version>0.1.0</version>
+  <description>Testing downstream catkin packages</description>
+
+  <maintainer email="tim.uebelhoer@rwth-aachen.de">Tim Übelhör</maintainer>
+  <license>MIT</license>
+  <url type="repository">https://github.com/Tuebel/ros_plain_cmake</url>
+  <author email="tim.uebelhoer@rwth-aachen.de">Tim Übelhör</author>
+
+  <depend>catkin_pkg</depend>
+  <depend>roscpp</depend>
+  <depend>std_msgs</depend>
+  <buildtool_depend>catkin</buildtool_depend>
+
+</package>

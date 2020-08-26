@@ -34,7 +34,8 @@ find_package (Eigen3 3.3 REQUIRED NO_MODULE)
 ###################
 
 # declare library
-add_library(${CMAKE_PROJECT_NAME}_lib)
+# adding source files here prevents catkin warnings
+add_library(${CMAKE_PROJECT_NAME}_lib src/matrix_operations.cpp)
 # target sources is IDE friendly (especially for INTERFACE libs)
 target_sources(${CMAKE_PROJECT_NAME}_lib PRIVATE
   src/matrix_operations.cpp)
